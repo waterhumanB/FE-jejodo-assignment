@@ -49,7 +49,19 @@ export const SearchResultBox = styled.div`
   max-height: 100px;
   border: 1px solid #000;
   background: #fff;
-  top: 10px;
+  top: 6px;
+`
+
+export const SearchResult = styled.button`
+  width: 100%;
+  height: 30px;
+  padding-left: 25px;
+  text-align: left;
+  font-size: 14px;
+
+  :hover {
+    background: #eee;
+  }
 `
 
 export const FilterContainer = styled.div`

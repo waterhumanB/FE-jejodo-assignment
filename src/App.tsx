@@ -15,16 +15,16 @@ function App() {
   const [jejodoData, setJeojodoData] = useRecoilState(jejodoState)
   const [serachData, setSearchData] = useState<JejodoProps[]>()
 
-  const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value)
-  }
-
   const fillterData = (data: JejodoProps[], word: string) => {
     if (!word) {
       return data
     }
     const filteredData = data.filter((data) => data.nickname.includes(word))
     return filteredData
+  }
+
+  const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value)
   }
 
   const handleSearch = () => {
@@ -40,6 +40,9 @@ function App() {
   }
 
   const mapData = serachData !== undefined ? serachData : jejodoData
+
+  // eslint-disable-next-line no-console
+  console.log('map data', mapData)
 
   const getData = async () => {
     await axios
@@ -64,46 +67,36 @@ function App() {
           <br /> 같이 화성에 가는날을 기다리며 화목하게 지내봐요!
         </S.Desc>
         <div style={{ position: 'relative' }}>
-          <form>
-            <S.SearchBox>
-              <input
-                style={{ width: '100%', fontSize: '14px', marginLeft: '25px' }}
-                placeholder="검색"
-                onChange={inputChangeValue}
-                value={inputValue}
-              />
-              <button
-                style={{
-                  margin: 'auto 20px auto 0',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                onClick={handleSearch}
-              >
-                <Search />
-              </button>
-            </S.SearchBox>
-          </form>
-
-          {inputValue !== '' && serachData !== undefined && (
+          <S.SearchBox>
+            <input
+              style={{ width: '100%', fontSize: '14px', marginLeft: '25px' }}
+              placeholder="검색"
+              onChange={inputChangeValue}
+              value={inputValue}
+            />
+            <button
+              style={{
+                margin: 'auto 20px auto 0',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onClick={handleSearch}
+            >
+              <Search />
+            </button>
+          </S.SearchBox>
+          {inputValue !== '' && fillterData(jejodoData, inputValue).length > 0 && (
             <S.SearchResultBox>
               <div style={{ marginTop: '25px' }} />
-              {serachData.map((data, index) => (
-                <button
-                  style={{
-                    marginLeft: '25px',
-                    width: '100%',
-                    height: '25px',
-                    textAlign: 'left',
-                    fontSize: '14px',
-                  }}
+              {fillterData(jejodoData, inputValue).map((data, index) => (
+                <S.SearchResult
                   data-result={data.nickname}
                   onClick={handleResultClick}
                   key={index + data.nickname}
                 >
                   {data.nickname}
-                </button>
+                </S.SearchResult>
               ))}
             </S.SearchResultBox>
           )}
