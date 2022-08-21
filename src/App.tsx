@@ -1,15 +1,29 @@
+import { ChangeEvent, useState } from 'react'
+
 import { Filter, Search } from './assets'
 import Profile from './components/Profile'
 import mock from './data/mockdata.json'
 
 function App() {
+  const [searchData, setSearchdata] = useState('')
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    // eslint-disable-next-line no-console
+    console.log(e.currentTarget.value)
+    setSearchdata(e.currentTarget.value)
+  }
+  const filter = mock.filter((data) => data.nickname.includes(searchData))
+
+  // eslint-disable-next-line no-console
+  console.log(filter)
+
   return (
     <main style={{ width: '320px', margin: 'auto', fontWeight: '700' }}>
       <section style={{ width: '100%', margin: 'auto', textAlign: 'center' }}>
         <div
           style={{
             fontSize: '28px',
-            letterSpacing: '-0.15em',
+            letterSpacing: '-0.12em',
             marginTop: '40px',
           }}
         >
@@ -19,39 +33,66 @@ function App() {
         <div
           style={{
             fontSize: '16px',
-            letterSpacing: '-0.15em',
+            letterSpacing: '-0.12em',
             marginBottom: '40px',
             marginTop: '10px',
+            lineHeight: '25px',
           }}
         >
           화섬 아파트에 입주한 입주민들입니다.
           <br /> 같이 화성에 가는날을 기다리며 화목하게 지내봐요!
         </div>
-        <div
-          style={{
-            width: '100%',
-            height: '32px',
-            border: '1px solid black',
-            borderRadius: '20px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginBottom: '50px',
-          }}
-        >
-          <input
-            style={{ width: '100%', fontSize: '14px', marginLeft: '25px' }}
-            placeholder="검색"
-          />
-          <button
+        <div />
+        <div style={{ position: 'relative' }}>
+          <div
             style={{
-              margin: 'auto 20px auto 0',
+              width: '100%',
+              height: '32px',
+              border: '1px solid black',
+              borderRadius: '20px',
               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '50px',
+              position: 'relative',
+              zIndex: '1',
+              background: '#fff',
             }}
           >
-            <Search />
-          </button>
+            <input
+              style={{ width: '100%', fontSize: '14px', marginLeft: '25px' }}
+              placeholder="검색"
+              onChange={handleSearch}
+            />
+            <button
+              style={{
+                margin: 'auto 20px auto 0',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Search />
+            </button>
+          </div>
+          {filter.length > 0 && (
+            <div
+              style={{
+                overflow: 'scroll',
+                borderRadius: '16px',
+                position: 'absolute',
+                width: '100%',
+                maxHeight: '100px',
+                border: '1px solid #000',
+                background: '#fff',
+                top: '10px',
+              }}
+            >
+              <div style={{ marginTop: '25px' }} />
+              {filter.map((data, index) => (
+                <main key={index + data.nickname}>{data.nickname}</main>
+              ))}
+            </div>
+          )}
         </div>
 
         <div
@@ -75,7 +116,7 @@ function App() {
               borderTopRightRadius: '10px',
               color: '#fff',
               background: '#000',
-              fontWeight: '700',
+              fontSize: '14px',
             }}
           >
             <div>입주민들</div>
@@ -94,12 +135,12 @@ function App() {
             key={index + data.nickname}
             style={{
               width: '100%',
-              height: '105px',
+              height: '100%',
               border: '1px solid #000',
               borderRadius: '10px',
               display: 'flex',
               justifyContent: 'center',
-              padding: '15px',
+              padding: '16px 18px',
               marginBottom: '10px',
             }}
           >
@@ -118,7 +159,7 @@ function App() {
                   style={{
                     paddingRight: '15px',
                     fontSize: '18px',
-                    marginTop: '6px',
+                    marginTop: '10px',
                   }}
                 >
                   {data.nickname}
@@ -127,7 +168,7 @@ function App() {
                   style={{
                     color: '#4498F2',
                     fontSize: '14px',
-                    marginTop: '6px',
+                    marginTop: '10px',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',

@@ -6,6 +6,7 @@ const Box = styled.div`
   position: relative;
   height: 242px;
   overflow: hidden;
+  z-index: 2;
 
   svg {
     position: absolute;

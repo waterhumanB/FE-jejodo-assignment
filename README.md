@@ -4,7 +4,7 @@
 
 ## Banner
 
-- [] 배너는 스크롤 시 화면 에 고정, position: fix
+- [x] 배너는 스크롤 시 화면 에 고정, position: fix
 
 ## Search
 
@@ -22,4 +22,4 @@
 
 - [] pc 버전 width: 1920px, height: 1693px, 배너 height: 300px, 제목 40px, 검색창 넓이 400px 높이 32px, 입주민들 넓이 560px, 높이 94px
 - [] tablet 버전 width: 1024px, height: 1693px, 배너 height: 299px, 제목 40px, 검색창 넓이 400px 높이 32px, 입주민들 넓이 560px, 높이 94px
-- [] moblie 버전 width: 360px, height: 1636px, 배너 height: 240px, 제목 28px, 검색창 넙이 320px 높이 32px, 입주민들 넓이 320px, 높이 94px
+- [x] moblie 버전 width: 360px, height: 1636px, 배너 height: 240px, 제목 28px, 검색창 넙이 320px 높이 32px, 입주민들 넓이 320px, 높이 94px
