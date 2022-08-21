@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState, MouseEvent } from 'react'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
 
@@ -18,19 +18,28 @@ function App() {
   const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
   }
-  const filter = jejodoData.filter((data) => data.nickname.includes(inputValue))
-  // eslint-disable-next-line no-console
-  console.log(filter)
+
+  const fillterData = (data: JejodoProps[], word: string) => {
+    if (!word) {
+      return data
+    }
+    const filteredData = data.filter((data) => data.nickname.includes(word))
+    return filteredData
+  }
+
   const handleSearch = () => {
-    setSearchData(filter)
-    // eslint-disable-next-line no-console
-    console.log(serachData)
+    setSearchData(fillterData(jejodoData, inputValue))
+    setInputValue('')
+  }
+
+  const handleResultClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const { result } = e.currentTarget.dataset
+    result && setInputValue(result)
+    setSearchData(fillterData(jejodoData, inputValue))
+    setInputValue('')
   }
 
   const mapData = serachData !== undefined ? serachData : jejodoData
-
-  // eslint-disable-next-line no-console
-  console.log('map data', mapData)
 
   const getData = async () => {
     await axios
@@ -55,29 +64,46 @@ function App() {
           <br /> 같이 화성에 가는날을 기다리며 화목하게 지내봐요!
         </S.Desc>
         <div style={{ position: 'relative' }}>
-          <S.SearchBox>
-            <input
-              style={{ width: '100%', fontSize: '14px', marginLeft: '25px' }}
-              placeholder="검색"
-              onChange={inputChangeValue}
-            />
-            <button
-              style={{
-                margin: 'auto 20px auto 0',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onClick={handleSearch}
-            >
-              <Search />
-            </button>
-          </S.SearchBox>
-          {inputValue !== '' && filter.length > 0 && (
+          <form>
+            <S.SearchBox>
+              <input
+                style={{ width: '100%', fontSize: '14px', marginLeft: '25px' }}
+                placeholder="검색"
+                onChange={inputChangeValue}
+                value={inputValue}
+              />
+              <button
+                style={{
+                  margin: 'auto 20px auto 0',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                onClick={handleSearch}
+              >
+                <Search />
+              </button>
+            </S.SearchBox>
+          </form>
+
+          {inputValue !== '' && serachData !== undefined && (
             <S.SearchResultBox>
               <div style={{ marginTop: '25px' }} />
-              {filter.map((data, index) => (
-                <main key={index + data.nickname}>{data.nickname}</main>
+              {serachData.map((data, index) => (
+                <button
+                  style={{
+                    marginLeft: '25px',
+                    width: '100%',
+                    height: '25px',
+                    textAlign: 'left',
+                    fontSize: '14px',
+                  }}
+                  data-result={data.nickname}
+                  onClick={handleResultClick}
+                  key={index + data.nickname}
+                >
+                  {data.nickname}
+                </button>
               ))}
             </S.SearchResultBox>
           )}
