@@ -1,10 +1,15 @@
-import { Ai, Chacha, Cowlose, GongIn, Mockha, Name, SungHee } from '../assets'
+import {
+  Ai,
+  Chacha,
+  Cowlose,
+  GongIn,
+  Mockha,
+  Name,
+  SungHee,
+} from '../../assets'
+import { ProfileProps } from '../../types/jejodo'
 
-interface Iprops {
-  datakey: string
-}
-
-const Profile = ({ datakey }: Iprops) => {
+const Profile = ({ datakey }: ProfileProps) => {
   const targetProfile = {
     차차: <Chacha />,
     공인즙개사: <GongIn />,
