@@ -67,7 +67,6 @@ export const SearchResult = styled.button`
 export const FilterContainer = styled.div`
   width: 100%;
   display: flex;
-  margin-bottom: 20px;
   border-bottom: 1px solid #000;
   justify-content: space-between;
 `

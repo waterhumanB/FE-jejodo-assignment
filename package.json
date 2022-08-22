@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@titicaca/eslint-config-triple": "^3.1.0",
+    "@types/react-js-pagination": "^3.0.4",
     "@types/styled-components": "^5.1.25",
     "eslint": "^8.18.0",
     "eslint-config-standard": "^17.0.0",

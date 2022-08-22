@@ -7,13 +7,28 @@ import Profile from './components/Profile'
 import * as S from './style'
 import { jejodoState } from './store/recoil'
 import { JejodoProps } from './types/jejodo'
+import Pagination from './components/Pagination'
 
 const URL = `https://jejodo-dev-team.github.io/open-api/frontend.json`
+
+const apartRange = [
+  { range: '전체', result: 0 },
+  { range: '5개이상', result: 5 },
+  { range: '4개', result: 4 },
+  { range: '3개', result: 3 },
+  { range: '2개', result: 2 },
+  { range: '1개', result: 1 },
+]
 
 function App() {
   const [inputValue, setInputValue] = useState('')
   const [jejodoData, setJeojodoData] = useRecoilState(jejodoState)
   const [serachData, setSearchData] = useState<JejodoProps[]>()
+
+  const [page, setPage] = useState(1)
+  const offset = (page - 1) * 7
+
+  const mapData = serachData !== undefined ? serachData : jejodoData
 
   const fillterData = (data: JejodoProps[], word: string) => {
     if (!word) {
@@ -39,10 +54,22 @@ function App() {
     setInputValue('')
   }
 
-  const mapData = serachData !== undefined ? serachData : jejodoData
-
-  // eslint-disable-next-line no-console
-  console.log('map data', mapData)
+  const handleRangeClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const { range } = e.currentTarget.dataset
+    if (range === '0') {
+      return setSearchData(jejodoData)
+    } else if (range === '5') {
+      const rangeResult = jejodoData.filter(
+        (data) => data.building_count >= Number(range),
+      )
+      setSearchData(rangeResult)
+      return
+    }
+    const rangeResult = jejodoData.filter(
+      (data) => data.building_count === Number(range),
+    )
+    setSearchData(rangeResult)
+  }
 
   const getData = async () => {
     await axios
@@ -107,70 +134,90 @@ function App() {
             <div
               style={{ fontWeight: '700', color: '#4498F2', marginLeft: '5px' }}
             >
-              {jejodoData.length}
+              {mapData.length}
             </div>
           </S.Citizen>
           <button>
             <Filter />
           </button>
         </S.FilterContainer>
-        {mapData.map((data, index) => (
-          <div
-            key={index + data.nickname}
-            style={{
-              width: '100%',
-              height: '100%',
-              border: '1px solid #000',
-              borderRadius: '10px',
-              display: 'flex',
-              justifyContent: 'center',
-              padding: '16px 0 16px 18px',
-              marginBottom: '10px',
-            }}
-          >
+        <div style={{ display: 'flex' }}>
+          <div>보유 아파트</div>
+          {apartRange.map((data, index) => (
+            <button
+              data-range={data.result}
+              onClick={handleRangeClick}
+              key={`${data.range}` + index}
+            >
+              {data.range}
+            </button>
+          ))}
+        </div>
+        <div style={{ marginTop: '20px' }}>
+          {mapData.slice(offset, offset + 7).map((data, index) => (
             <div
+              key={index + data.nickname}
               style={{
+                width: '100%',
+                height: '100%',
+                border: '1px solid #000',
+                borderRadius: '10px',
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center',
+                padding: '16px 0 16px 18px',
+                marginBottom: '10px',
               }}
             >
-              <Profile datakey={data.nickname} />
-            </div>
-            <div style={{ width: '100%', paddingLeft: '20px' }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                <div
-                  style={{
-                    paddingRight: '15px',
-                    fontSize: '18px',
-                    marginTop: '10px',
-                  }}
-                >
-                  {data.nickname}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Profile datakey={data.nickname} />
+              </div>
+              <div style={{ width: '100%', paddingLeft: '20px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                  <div
+                    style={{
+                      paddingRight: '15px',
+                      fontSize: '18px',
+                      marginTop: '10px',
+                    }}
+                  >
+                    {data.nickname}
+                  </div>
+                  <div
+                    style={{
+                      color: '#4498F2',
+                      fontSize: '14px',
+                      marginTop: '10px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    지구家 아파트{data.building_count}개
+                  </div>
                 </div>
-                <div
-                  style={{
-                    color: '#4498F2',
-                    fontSize: '14px',
-                    marginTop: '10px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  지구家 아파트{data.building_count}개
+                <div style={{ display: 'flex', marginTop: '10px' }}>
+                  <S.Nickname>제</S.Nickname>
+                  <S.SubName>{data.nickname}</S.SubName>
+                  <S.Oname>오</S.Oname>
+                  <S.SubName>{data.oname}</S.SubName>
                 </div>
               </div>
-              <div style={{ display: 'flex', marginTop: '10px' }}>
-                <S.Nickname>제</S.Nickname>
-                <S.SubName>{data.nickname}</S.SubName>
-                <S.Oname>오</S.Oname>
-                <S.SubName>{data.oname}</S.SubName>
-              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </S.Section>
+      <Pagination
+        total={mapData.length}
+        limit={7}
+        page={page}
+        setPage={setPage}
+      />
     </S.MainContainer>
   )
 }
