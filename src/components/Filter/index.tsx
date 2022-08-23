@@ -42,6 +42,8 @@ const Filter = () => {
 
   const handleFilterMenu = () => {
     setOpenFilter((prev) => !prev)
+    !openFilter && setCurrentTab(apartRange[0].range)
+    setSearchData(jejodoData)
   }
   return (
     <div>
