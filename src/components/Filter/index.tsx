@@ -20,8 +20,13 @@ const Filter = () => {
   const [, setSearchData] = useRecoilState(searchState)
   const [resultData] = useRecoilState(resultState)
   const [openFilter, setOpenFilter] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [currentTab, setCurrentTab] = useState(apartRange[0].range)
 
   const handleRangeClick = (e: MouseEvent<HTMLButtonElement>) => {
+    setCurrentTab(e.currentTarget.value)
+    // eslint-disable-next-line no-console
+    console.log(e.currentTarget)
     const { range } = e.currentTarget.dataset
     if (range === '0') {
       return setSearchData(jejodoData)
@@ -46,29 +51,29 @@ const Filter = () => {
       <S.FilterContainer>
         <S.Citizen>
           <div>입주민들</div>
-          <div
-            style={{ fontWeight: '700', color: '#4498F2', marginLeft: '5px' }}
-          >
+          <S.CitizenCount>
             {resultData.length === 0 ? 20 : resultData.length}
-          </div>
+          </S.CitizenCount>
         </S.Citizen>
         <button onClick={handleFilterMenu}>
           {openFilter ? <FilterAtive /> : <FilterI />}
         </button>
       </S.FilterContainer>
       {openFilter && (
-        <div style={{ display: 'flex' }}>
-          <div>보유 아파트</div>
+        <S.FilterMenu>
+          보유 아파트
           {apartRange.map((data, index) => (
-            <button
+            <S.FilterRange
+              className={currentTab === data.range ? 'focus' : ''}
               data-range={data.result}
               onClick={handleRangeClick}
               key={`${data.range}` + index}
+              value={data.range}
             >
               {data.range}
-            </button>
+            </S.FilterRange>
           ))}
-        </div>
+        </S.FilterMenu>
       )}
     </div>
   )
