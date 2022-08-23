@@ -17,9 +17,7 @@ const Search = () => {
     if (!word) {
       return data
     }
-    const filteredData = data.filter(
-      (data) => data.nickname.includes(word) || data.oname.includes(word),
-    )
+    const filteredData = data.filter((data) => data.nickname.includes(word))
     return filteredData
   }
 
