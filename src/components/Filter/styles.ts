@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
+import colors from '../../styles/constants/colors'
+
 export const FilterContainer = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${colors.black};
   justify-content: space-between;
 `
 export const Citizen = styled.div`
@@ -15,13 +17,13 @@ export const Citizen = styled.div`
   align-items: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  color: #fff;
-  background: #000;
+  color: ${colors.white};
+  background: ${colors.black};
   font-size: 14px;
 `
 export const CitizenCount = styled.div`
   font-weight: 700;
-  color: #4498f2;
+  color: ${colors.buildingText};
   margin-left: 5px;
 `
 export const FilterMenu = styled.div`
@@ -32,13 +34,13 @@ export const FilterMenu = styled.div`
 
   .focus {
     padding: 4px 12px;
-    color: #fff;
-    background: #000;
+    color: ${colors.white};
+    background: ${colors.black};
     border-radius: 20px;
   }
 `
 export const FilterRange = styled.button`
   margin-left: 10px;
   font-size: 14px;
-  color: #999;
+  color: ${colors.gray};
 `

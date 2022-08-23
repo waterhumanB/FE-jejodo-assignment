@@ -1,16 +1,18 @@
 import styled from 'styled-components'
 
+import colors from '../../styles/constants/colors'
+
 export const SearchBox = styled.div`
   width: 100%;
   height: 32px;
-  border: 1px solid #000;
+  border: 1px solid ${colors.black};
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
   position: relative;
   z-index: 1;
-  background: #fff;
+  background: ${colors.white};
 `
 
 export const SearchInput = styled.input`
@@ -31,8 +33,8 @@ export const SearchResultBox = styled.div`
   position: absolute;
   width: 100%;
   max-height: 100px;
-  border: 1px solid #000;
-  background: #fff;
+  border: 1px solid ${colors.black};
+  background: ${colors.white};
   top: 6px;
 `
 
@@ -49,6 +51,6 @@ export const SearchResult = styled.button`
   font-size: 14px;
 
   :hover {
-    background: #eee;
+    background: ${colors.white};
   }
 `

@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
+import colors from '../../styles/constants/colors'
+
 export const PostCardContainer = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid #000;
+  border: 1px solid ${colors.black};
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -37,12 +39,12 @@ export const NickameBox = styled.div`
   margin-top: 10px;
 
   .search {
-    background: #a2ccf9;
+    background: ${colors.searchText};
   }
 `
 
 export const BudingCount = styled.div`
-  color: #4498f2;
+  color: ${colors.buildingText};
   font-size: 14px;
   margin-top: 10px;
   display: flex;
@@ -56,7 +58,7 @@ export const SubNickname = styled.div`
   align-items: center;
   width: 17px;
   height: 17px;
-  background: #ffdc3c;
+  background: ${colors.yellow};
   border: 1px solid #000;
   font-size: 8px;
   border-radius: 10px;
@@ -69,14 +71,14 @@ export const Oname = styled.div`
   justify-content: center;
   width: 17px;
   height: 17px;
-  background: #4498f2;
-  border: 1px solid #000;
+  background: ${colors.buildingText};
+  border: 1px solid ${colors.black};
   font-size: 8px;
   border-radius: 10px;
   margin-right: 5px;
 `
 export const SubName = styled.div`
-  color: #999;
+  color: ${colors.gray};
   font-weight: 400;
   font-size: 12px;
   margin-right: 10px;

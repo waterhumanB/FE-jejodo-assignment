@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import colors from '../../styles/constants/colors'
+
 export const Nav = styled.nav`
   display: flex;
   justify-content: center;
@@ -12,7 +14,7 @@ export const Button = styled.button`
   margin-left: 5px;
 
   &:visited {
-    color: #000;
+    color: ${colors.black};
   }
 
   &[disabled] {
@@ -20,12 +22,12 @@ export const Button = styled.button`
     transform: revert;
 
     rect {
-      stroke: #999;
+      stroke: ${colors.gray};
     }
 
     path {
-      stroke: #999;
-      fill: #999;
+      stroke: ${colors.gray};
+      fill: ${colors.gray};
     }
   }
 `
