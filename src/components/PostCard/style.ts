@@ -35,6 +35,10 @@ export const NickameBox = styled.div`
   padding-right: 15px;
   font-size: 18px;
   margin-top: 10px;
+
+  .search {
+    background: #a2ccf9;
+  }
 `
 
 export const BudingCount = styled.div`

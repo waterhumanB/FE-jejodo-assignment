@@ -20,13 +20,10 @@ const Filter = () => {
   const [, setSearchData] = useRecoilState(searchState)
   const [resultData] = useRecoilState(resultState)
   const [openFilter, setOpenFilter] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentTab, setCurrentTab] = useState(apartRange[0].range)
 
   const handleRangeClick = (e: MouseEvent<HTMLButtonElement>) => {
     setCurrentTab(e.currentTarget.value)
-    // eslint-disable-next-line no-console
-    console.log(e.currentTarget)
     const { range } = e.currentTarget.dataset
     if (range === '0') {
       return setSearchData(jejodoData)

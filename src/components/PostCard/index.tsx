@@ -1,9 +1,13 @@
+import { useRecoilState } from 'recoil'
+
+import { searchTextState } from '../../store/recoil'
 import { PostProps } from '../../types/jejodo'
 
 import Profile from './Profile'
 import * as S from './style'
 
 const PostCard = ({ data }: PostProps) => {
+  const [SearchText] = useRecoilState(searchTextState)
   return (
     <S.PostCardContainer>
       <S.ProfileBox>
@@ -11,7 +15,11 @@ const PostCard = ({ data }: PostProps) => {
       </S.ProfileBox>
       <S.InfoBox>
         <S.FirstInfo>
-          <S.NickameBox>{data.nickname}</S.NickameBox>
+          <S.NickameBox>
+            <span className={SearchText === data.nickname ? 'search' : ''}>
+              {data.nickname}
+            </span>
+          </S.NickameBox>
           <S.BudingCount>지구家 아파트{data.building_count}개</S.BudingCount>
         </S.FirstInfo>
         <S.SecondInfo>

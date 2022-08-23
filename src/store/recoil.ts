@@ -16,3 +16,8 @@ export const resultState = atom<JejodoProps[]>({
   key: '#resultStaet',
   default: [],
 })
+
+export const searchTextState = atom<string>({
+  key: '#searchTextState',
+  default: '',
+})

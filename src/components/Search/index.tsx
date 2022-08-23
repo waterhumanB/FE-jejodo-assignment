@@ -1,7 +1,7 @@
 import { useState, MouseEvent, ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 
-import { jejodoState, searchState } from '../../store/recoil'
+import { jejodoState, searchState, searchTextState } from '../../store/recoil'
 import { JejodoProps } from '../../types/jejodo'
 import { SearchI } from '../../assets'
 
@@ -11,6 +11,7 @@ const Search = () => {
   const [jejodoData] = useRecoilState(jejodoState)
   const [, setSearchData] = useRecoilState(searchState)
   const [inputValue, setInputValue] = useState('')
+  const [, setSearchText] = useRecoilState(searchTextState)
 
   const fillterData = (data: JejodoProps[], word: string) => {
     if (!word) {
@@ -29,6 +30,7 @@ const Search = () => {
 
   const handleResultClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { result } = e.currentTarget.dataset
+    setSearchText(e.currentTarget.value)
     result && setInputValue(result)
     setSearchData(fillterData(jejodoData, inputValue))
     setInputValue('')
@@ -36,6 +38,7 @@ const Search = () => {
 
   const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
+    setSearchText(e.currentTarget.value)
   }
 
   return (
@@ -57,6 +60,7 @@ const Search = () => {
               data-result={data.nickname}
               onClick={handleResultClick}
               key={index + data.nickname}
+              value={data.nickname}
             >
               {data.nickname}
             </S.SearchResult>
