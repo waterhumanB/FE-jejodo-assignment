@@ -2,6 +2,13 @@ import styled from 'styled-components'
 
 import colors from '../../styles/constants/colors'
 
+export const SearchContainer = styled.div`
+  position: 'relative';
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+`
+
 export const SearchBox = styled.div`
   width: 100%;
   height: 32px;
@@ -32,6 +39,8 @@ export const SearchResultBox = styled.div`
   border-radius: 16px;
   position: absolute;
   width: 100%;
+  max-width: 400px;
+  margin: auto;
   max-height: 100px;
   border: 1px solid ${colors.black};
   background: ${colors.white};

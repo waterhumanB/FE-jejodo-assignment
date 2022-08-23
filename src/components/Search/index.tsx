@@ -42,7 +42,7 @@ const Search = () => {
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <S.SearchContainer>
       <S.SearchBox>
         <S.SearchInput
           placeholder="검색"
@@ -67,7 +67,7 @@ const Search = () => {
           ))}
         </S.SearchResultBox>
       )}
-    </div>
+    </S.SearchContainer>
   )
 }
 

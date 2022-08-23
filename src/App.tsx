@@ -58,7 +58,7 @@ function App() {
               ))}
       </S.PostCardBox>
       <Pagination
-        total={resultData.length}
+        total={resultData.length !== 0 ? resultData.length : jejodoData.length}
         limit={7}
         page={page}
         setPage={setPage}

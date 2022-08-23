@@ -59,10 +59,10 @@ export const SubNickname = styled.div`
   width: 17px;
   height: 17px;
   background: ${colors.yellow};
-  border: 1px solid #000;
+  border: 1px solid ${colors.black};
   font-size: 8px;
   border-radius: 10px;
-  margin-right: 5px;
+  margin-right: 3px;
 `
 
 export const Oname = styled.div`
@@ -75,14 +75,15 @@ export const Oname = styled.div`
   border: 1px solid ${colors.black};
   font-size: 8px;
   border-radius: 10px;
-  margin-right: 5px;
+  margin-right: 3px;
 `
 export const SubName = styled.div`
   color: ${colors.gray};
   font-weight: 400;
   font-size: 12px;
-  margin-right: 10px;
+  margin-right: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  letter-spacing: -0.1em;
 `

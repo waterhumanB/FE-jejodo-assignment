@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 
 export const MainContainer = styled.main`
-  width: 320px;
-  margin: auto;
+  width: 100%;
+  min-width: 320px;
+  max-width: 560px;
+  margin: 40px auto 0;
+  padding: 0 15px;
   font-weight: 700;
+  @media screen and (min-width: 1024px) {
+    margin: 110px auto 0;
+  }
 `
 
 export const Section = styled.section`
@@ -15,8 +21,10 @@ export const Section = styled.section`
 export const Title = styled.div`
   width: 100%;
   font-size: 28px;
-  letter-spacing: -0.12em;
-  margin-top: 40px;
+  letter-spacing: -0.2em;
+  @media screen and (min-width: 1024px) {
+    font-size: 40px;
+  }
 `
 
 export const Desc = styled.div`

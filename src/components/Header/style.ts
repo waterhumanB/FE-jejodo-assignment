@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Box = styled.div`
   position: relative;
-  height: 242px;
+  min-height: 242px;
   overflow: hidden;
   z-index: 2;
 

@@ -1,12 +1,22 @@
-import { BannerM } from '../../assets'
+import { useMediaQuery } from 'react-responsive'
+
+import { BannerM, BannerPT } from '../../assets'
 
 import * as S from './style'
 
 const Header = () => {
+  const isTablet = useMediaQuery({
+    query: '(min-width:1024px)',
+  })
+  const isMobile = useMediaQuery({
+    query: '(max-width:1024px)',
+  })
+
   return (
     <header>
       <S.Box>
-        <BannerM />
+        {isTablet && <BannerPT />}
+        {isMobile && <BannerM />}
       </S.Box>
     </header>
   )
