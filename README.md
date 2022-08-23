@@ -1,6 +1,36 @@
 # Jejodo 기업과제
 
-# 요구사항
+## [배포 주소](https://fe-jejodo-assignment.netlify.app/)
+
+# 1. 프로젝트 실행 방법
+
+git 레포 클론
+
+```
+git clone https://github.com/waterhumanB/FE-jejodo-assignment
+```
+
+사용한 라이브러리 설치
+
+```
+npm install
+```
+
+웹 실행하기
+
+```
+npm start
+```
+
+# 2. 사용한 기술과 선택한 이유
+
+### 사용한 기술 스택
+
+```
+React, TypeScript, Styled-components, recoil
+```
+
+# 3.요구사항
 
 ## Banner
 
@@ -9,7 +39,9 @@
 ## Search
 
 - [x] 기본 값 : 검색 창 하단엔 태그의 갯수가 많은 순서로 좌측부터 보여진다. 총 4개의 태그가 노출 되고, 12px 간격으로 가운데 정렬된다.
+      <br>-> api 데이터에는 태그가 없었음
 - [x] DropDonwBOx : 검색 창 하단엔 해당 검색어의 갯수가 많은 순서로 좌측부터 보여진다. 총 4개의 태그가 노출 되고, 12px 간격으로 정렬된다.
+      <br>-> api 데이터에는 태그가 없었음 nickname만 판단하여 검색을 할 수 있게 구현함
 - [x] Result : 검색 결과 화면에서 본문 내용은 해당 검색어의 Background Color가 Corrent Color의 Opacity 50%
 
 ## Filter
