@@ -36,7 +36,6 @@ const Search = () => {
 
   const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value)
-    setSearchText(e.currentTarget.value)
   }
 
   return (
