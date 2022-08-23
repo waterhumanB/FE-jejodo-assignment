@@ -60,6 +60,6 @@ export const SearchResult = styled.button`
   font-size: 14px;
 
   :hover {
-    background: ${colors.white};
+    background: ${colors.searchGray};
   }
 `

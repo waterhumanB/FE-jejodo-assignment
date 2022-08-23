@@ -5,6 +5,7 @@ const colors = {
   searchText: '#a2ccf9',
   gray: '#999',
   yellow: '#ffdc3c',
+  searchGray: '#eee',
 }
 
 export default colors
