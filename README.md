@@ -22,9 +22,7 @@ npm install
 npm start
 ```
 
-# 2. 사용한 기술과 선택한 이유
-
-### 사용한 기술 스택
+# 2. 사용한 기술
 
 ```
 React, TypeScript, Styled-components, recoil
