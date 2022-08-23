@@ -23,6 +23,7 @@ const Search = () => {
 
   const handleSearch = () => {
     setSearchData(fillterData(jejodoData, inputValue))
+    setSearchText(inputValue)
     setInputValue('')
   }
 
